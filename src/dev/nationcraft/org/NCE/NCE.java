@@ -20,7 +20,7 @@ public class NCE extends JavaPlugin {
 
     public static HashMap<Player, String> Crash = new HashMap<>();
     public static NCE plugin;
-    public static YAMLManager Config;
+    //public static YAMLManager Config;
 
     @Override
     public void onDisable() {
@@ -32,6 +32,7 @@ public class NCE extends JavaPlugin {
     public void onEnable() {
         NCEChat.enableMessage();
         new Enabler(this);
+        
     }
 
 }

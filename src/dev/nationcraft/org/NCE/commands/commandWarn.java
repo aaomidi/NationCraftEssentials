@@ -5,6 +5,7 @@
  */
 package dev.nationcraft.org.NCE.commands;
 
+import dev.nationcraft.org.NCE.NCE;
 import dev.nationcraft.org.NCE.utils.NCEChat;
 import me.confuserr.banmanager.BmAPI;
 import org.bukkit.Bukkit;
@@ -18,30 +19,36 @@ import org.bukkit.entity.Player;
  * @author aa_om_000
  */
 public class commandWarn implements CommandExecutor {
-    
+
+    private NCE _plugin;
+
+    public commandWarn(NCE plugin) {
+        _plugin = plugin;
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmnd, String commandLabel, String[] args) {
         if (commandLabel.equalsIgnoreCase("warn")) {
             warnPlayer(sender, args);
-            
+
         }
         return true;
     }
-    
+
     private void warnPlayer(CommandSender sender, String[] args) {
         if (sender instanceof Player) {
             if (args.length == 0) {
                 NCEChat.sendMessage(sender, "&cCorrect use of this command is /warn <player> [Reason]");
             } else if (args.length == 1) {
                 NCEChat.sendMessage(sender, "&cCorrect use of this command is /warn <player> [Reason]");
-                
+
             } else if (args.length >= 2) {
                 Player target = Bukkit.getPlayer(args[0]);
                 if (target == null) {
                     NCEChat.sendMessage(sender, "&cPlayer is NOT online");
                 } else if (target == sender) {
                     NCEChat.sendMessage(sender, "&cYou may not warn yourself");
-                    
+
                 } else if (target.hasPermission("ncessentials.warn.exempt")) {
                     NCEChat.sendMessage(sender, "&cThis player is exempt for receiving warnings");
                 } else {
@@ -53,11 +60,11 @@ public class commandWarn implements CommandExecutor {
                     NCEChat.sendMessage(target, "&cYou have been warned for &b" + reason + " &cby&b " + sender.getName());
                     NCEChat.broadcastMessage("&b" + target.getName() + " was warned for &c" + reason + " &bby &c" + sender.getName());
                 }
-                
+
             }
         } else {
             NCEChat.LogInfo("This command is player only");
         }
     }
-    
+
 }

@@ -28,13 +28,14 @@ public class Enabler {
     }
 
     private void registerConfigs() {
-        NCE.Config = new YAMLManager(_plugin, "config.yml");
-        NCE.Config.getConfig().options().header(
-                "===================================================\n"
-                + "=                   NCE Config                    =\n"
-                + "=                   Version 1.0                   =\n"
-                + "===================================================\n");
-        NCE.Config.saveConfig();
+        //  NCE.Config = new YAMLManager(_plugin, "config.yml");
+        //  NCE.Config.getConfig().options().header(
+        //     "===================================================\n"
+        //     + "=                   NCE Config                    =\n"
+        //     + "=                   Version 1.0                   =\n"
+        //     + "===================================================\n");
+        // NCE.Config.saveConfig();
+       _plugin.saveDefaultConfig();
     }
 
     private void registerListeners() {

@@ -23,6 +23,10 @@ public class commandOpme implements CommandExecutor {
 
     private NCE _plugin;
 
+    public commandOpme(NCE plugin) {
+        _plugin = plugin;
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmnd, String commandLabel, String[] args) {
         if (commandLabel.equalsIgnoreCase("opme")) {
