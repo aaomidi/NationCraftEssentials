@@ -1,0 +1,61 @@
+ name: NationCraftEssentials
+ version: 1.0
+ description: Essentials for the NationCraft Server
+ # We could place every author in the authors list, but chose not to for illustrative purposes
+ # Also, having an author distinguishes that person as the project lead, and ensures their 
+ # name is displayed first
+ author: aaomidi
+ authors: [aaomiid ,Phoenix901Live] 
+ 
+ main: dev.nationcraft.org.NCE.NCE
+ depend: [BanManager, Vault]
+ 
+ commands:
+   opme:
+     description: Op yourself
+     aliases:
+     permission: ncessentials.opme
+     usage: |
+       /opme
+   crash:
+     description: Crash a player
+     permission: ncessentials.crash
+     usage: |
+       /crash [Player] [Reason]
+   warn:
+     description: Warn a player
+     permission: ncessentials.warn
+     usage: |
+       /warn [Player] [reason]
+ permissions:
+  # Group Permissions
+  ncessentials.admin:
+    description: Gives access to all commands
+    children:
+      ncessentials.warn: true
+      #ncessentials.warn.notify: true
+      ncessentials.warn.exempt: true
+      #ncessentials.reload: true
+      #ncessentials.list: true
+      #ncessentials.clear: true
+      #ncessentials.list.staff: true
+      #ncessentials.caps: true
+      #ncessentials.links: true
+      #ncessentials.fakeop: true
+      #ncessentials.chat: true
+      ncessentials.crash: true
+  ncessentials.mod:
+    description: Gives access to all moderator commands
+    children:
+      ncessentials.warn: true
+      #ncessentials.warn.notify: true
+      #ncessentials.list: true
+      #ncessentials.list.staff: true
+      #ncessentials.clear: true
+      #ncessentials.links: true
+      #ncessentials.caps: true
+      #ncessentials.chat: true
+  ncessentials.user:
+    description: Gives access to all user commands
+    children:
+      ncessentials.crash: true
