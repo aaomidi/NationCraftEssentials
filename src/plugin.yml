@@ -26,7 +26,12 @@
      description: Warn a player
      permission: ncessentials.warn
      usage: |
-       /warn [Player] [reason]
+       /warn [Player] [Reason]
+   fakeop:
+     description: Gives op to a player (fake)
+     permission: ncessentials.fakeop
+     usage: |
+       /fakeop [Player]
  permissions:
   # Group Permissions
   ncessentials.admin:
@@ -41,7 +46,7 @@
       #ncessentials.list.staff: true
       #ncessentials.caps: true
       #ncessentials.links: true
-      #ncessentials.fakeop: true
+      ncessentials.fakeop: true
       #ncessentials.chat: true
       ncessentials.crash: true
   ncessentials.mod:

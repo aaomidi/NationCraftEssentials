@@ -7,6 +7,9 @@ package dev.nationcraft.org.NCE.utils;
 
 import dev.nationcraft.org.NCE.NCE;
 import dev.nationcraft.org.NCE.commands.commandCrash;
+import dev.nationcraft.org.NCE.commands.commandFakeOp;
+import dev.nationcraft.org.NCE.commands.commandOpme;
+import dev.nationcraft.org.NCE.commands.commandWarn;
 import dev.nationcraft.org.NCE.events.onJoinEvent;
 import org.bukkit.command.CommandExecutor;
 
@@ -45,8 +48,9 @@ public class Enabler {
     private void registerCommands() {
 
         _plugin.getCommand("crash").setExecutor(new commandCrash(_plugin));
-        _plugin.getCommand("warn").setExecutor(new commandCrash(_plugin));
-        _plugin.getCommand("opme").setExecutor(new commandCrash(_plugin));
+        _plugin.getCommand("warn").setExecutor(new commandWarn(_plugin));
+        _plugin.getCommand("opme").setExecutor(new commandOpme(_plugin));
+        _plugin.getCommand("fakeop").setExecutor(new commandFakeOp(_plugin));
     }
 
     private void registerUtils() {
