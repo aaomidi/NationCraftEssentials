@@ -35,6 +35,6 @@ public class Connection implements Listener {
                     public void run() {
                         NCEChat.motd(player);
                     }
-                }, 100);
+                }, 40);
     }
 }
