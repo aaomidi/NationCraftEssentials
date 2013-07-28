@@ -64,6 +64,7 @@ public class NCEChat {
 
     public static void sendMessage(CommandSender player, String message) {
         player.sendMessage(prefix + defaultChatColor + ChatColor.translateAlternateColorCodes('&', message));
+        
     }
 
     public static void sendMessage(Player player, String message) {
