@@ -20,6 +20,7 @@ public class NCE extends JavaPlugin {
 
     public static HashMap<Player, String> Crash = new HashMap<>();
     public static NCE plugin;
+    
     //public static YAMLManager Config;
 
     @Override
