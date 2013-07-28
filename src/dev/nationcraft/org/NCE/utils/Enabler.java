@@ -10,7 +10,7 @@ import dev.nationcraft.org.NCE.commands.commandCrash;
 import dev.nationcraft.org.NCE.commands.commandFakeOp;
 import dev.nationcraft.org.NCE.commands.commandOpme;
 import dev.nationcraft.org.NCE.commands.commandWarn;
-import dev.nationcraft.org.NCE.events.onJoinEvent;
+import dev.nationcraft.org.NCE.events.Connection;
 import org.bukkit.command.CommandExecutor;
 
 /**
@@ -42,7 +42,7 @@ public class Enabler {
     }
 
     private void registerListeners() {
-        new onJoinEvent(_plugin);
+        new Connection(_plugin);
     }
 
     private void registerCommands() {

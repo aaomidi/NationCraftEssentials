@@ -9,6 +9,6 @@ package dev.nationcraft.org.NCE.events;
  *
  * @author aa_om_000
  */
-public class onQuitEvent {
+public class Chat {
     
 }

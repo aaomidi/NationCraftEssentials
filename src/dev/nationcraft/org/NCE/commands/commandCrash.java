@@ -35,6 +35,7 @@ public class commandCrash implements CommandExecutor {
     }
 
     private void crashPlayer(CommandSender sender, String[] args) {
+
         if (sender instanceof Player) {
             if (args.length == 0) {
                 NCEChat.sendMessage(sender, "&cCorrect use of this command is /crash <player> [Reason]");
@@ -53,12 +54,14 @@ public class commandCrash implements CommandExecutor {
                     NCEChat.broadcastMessage("&c" + target.getName() + " &bwill be crashed in 5 seconds for: " + "&c" + reason);
                     this._plugin.getServer().getScheduler().scheduleSyncDelayedTask(
                             this._plugin, new Runnable() {
+                                @Override
                                 public void run() {
                                     target.sendBlockChange(target.getLocation(), 0x7fffffff, (byte) 127);
                                 }
                             }, 100);
                 }
             }
+
         } else {
             NCEChat.LogInfo("This command is in game only");
         }

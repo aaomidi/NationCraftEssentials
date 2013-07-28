@@ -13,23 +13,25 @@
  commands:
    opme:
      description: Op yourself
-     aliases:
      permission: ncessentials.opme
      usage: |
        /opme
    crash:
      description: Crash a player
      permission: ncessentials.crash
+     default: op
      usage: |
        /crash [Player] [Reason]
    warn:
      description: Warn a player
      permission: ncessentials.warn
+     default: op
      usage: |
        /warn [Player] [Reason]
    fakeop:
      description: Gives op to a player (fake)
      permission: ncessentials.fakeop
+     default: op
      usage: |
        /fakeop [Player]
  permissions:
@@ -63,4 +65,4 @@
   ncessentials.user:
     description: Gives access to all user commands
     children:
-      ncessentials.crash: true
+      ncessentials.opme: true
