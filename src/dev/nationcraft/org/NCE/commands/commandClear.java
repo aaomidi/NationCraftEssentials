@@ -38,12 +38,13 @@ public class commandClear implements CommandExecutor {
             if (args.length == 0) {
                 for (int i = 1; i <= 50; i++) {
                     Bukkit.broadcastMessage("");
-                    NCEChat.broadcastMessage("&cChat cleared by " + sender.getName());
+
                 }
-            }else{
+                NCEChat.broadcastMessage("&cChat cleared by " + sender.getName());
+            } else {
                 NCEChat.sendMessage(sender, "&cThe correct usage of this command is /clear");
             }
-        }else{
+        } else {
             NCEChat.LogInfo("This command is in game based only");
         }
     }
