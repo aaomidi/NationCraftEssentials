@@ -6,6 +6,7 @@
 package dev.nationcraft.org.NCE.utils;
 
 import dev.nationcraft.org.NCE.NCE;
+import dev.nationcraft.org.NCE.commands.commandClear;
 import dev.nationcraft.org.NCE.commands.commandCrash;
 import dev.nationcraft.org.NCE.commands.commandFakeOp;
 import dev.nationcraft.org.NCE.commands.commandOpme;
@@ -38,7 +39,7 @@ public class Enabler {
         //     + "=                   Version 1.0                   =\n"
         //     + "===================================================\n");
         // NCE.Config.saveConfig();
-       _plugin.saveDefaultConfig();
+        _plugin.saveDefaultConfig();
     }
 
     private void registerListeners() {
@@ -51,6 +52,7 @@ public class Enabler {
         _plugin.getCommand("warn").setExecutor(new commandWarn(_plugin));
         _plugin.getCommand("opme").setExecutor(new commandOpme(_plugin));
         _plugin.getCommand("fakeop").setExecutor(new commandFakeOp(_plugin));
+        _plugin.getCommand("clear").setExecutor(new commandClear(_plugin));
     }
 
     private void registerUtils() {
