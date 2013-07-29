@@ -31,6 +31,12 @@
      default: op
      usage: |
        /fakeop [Player]
+   clear:
+     description: Clear the chat
+     permission: ncessentials.clear
+     default: op
+     usage: |
+       /clear
  permissions:
   # Group Permissions
   ncessentials.admin:
@@ -41,7 +47,7 @@
       ncessentials.warn.exempt: true
       #ncessentials.reload: true
       #ncessentials.list: true
-      #ncessentials.clear: true
+      ncessentials.clear: true
       #ncessentials.list.staff: true
       #ncessentials.caps: true
       #ncessentials.links: true
@@ -55,7 +61,7 @@
       #ncessentials.warn.notify: true
       #ncessentials.list: true
       #ncessentials.list.staff: true
-      #ncessentials.clear: true
+      ncessentials.clear: true
       #ncessentials.links: true
       #ncessentials.caps: true
       #ncessentials.chat: true
