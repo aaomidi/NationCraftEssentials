@@ -36,9 +36,8 @@ public class commandClear implements CommandExecutor {
     private void clearChat(CommandSender sender, String[] args) {
         if (sender instanceof Player) {
             if (args.length == 0) {
-                for (int i = 1; i <= 50; i++) {
+                for (int i = 1; i <= 300; i++) {
                     Bukkit.broadcastMessage("");
-
                 }
                 NCEChat.broadcastMessage("&cChat cleared by " + sender.getName());
             } else {

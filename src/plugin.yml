@@ -49,10 +49,10 @@
       #ncessentials.list: true
       ncessentials.clear: true
       #ncessentials.list.staff: true
-      #ncessentials.caps: true
-      #ncessentials.links: true
+      ncessentials.caps: true
+      ncessentials.links: true
       ncessentials.fakeop: true
-      #ncessentials.chat: true
+      ncessentials.chat: true
       ncessentials.crash: true
   ncessentials.mod:
     description: Gives access to all moderator commands
@@ -62,9 +62,9 @@
       #ncessentials.list: true
       #ncessentials.list.staff: true
       ncessentials.clear: true
-      #ncessentials.links: true
-      #ncessentials.caps: true
-      #ncessentials.chat: true
+      ncessentials.links: true
+      ncessentials.caps: true
+      ncessentials.chat: true
   ncessentials.user:
     description: Gives access to all user commands
     children:

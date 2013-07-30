@@ -11,6 +11,7 @@ import dev.nationcraft.org.NCE.commands.commandCrash;
 import dev.nationcraft.org.NCE.commands.commandFakeOp;
 import dev.nationcraft.org.NCE.commands.commandOpme;
 import dev.nationcraft.org.NCE.commands.commandWarn;
+import dev.nationcraft.org.NCE.events.Chat;
 import dev.nationcraft.org.NCE.events.Connection;
 import org.bukkit.command.CommandExecutor;
 
@@ -44,6 +45,7 @@ public class Enabler {
 
     private void registerListeners() {
         new Connection(_plugin);
+        new Chat(_plugin);
     }
 
     private void registerCommands() {
