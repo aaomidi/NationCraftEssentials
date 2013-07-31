@@ -59,7 +59,7 @@ public class commandHappyHour implements CommandExecutor {
                         String timeStringHours;
                         timeStringHours = timeString.replace("m", "");
                         time = (Integer.parseInt(timeStringHours));
-                        time = time * 1200;
+                        time = time * 72000;
                         GivePermissions(time);
                     } else {
                         NCEChat.sendMessage(sender, "Use seconds, minutes or hours only!");
@@ -75,6 +75,7 @@ public class commandHappyHour implements CommandExecutor {
     private void GivePermissions(int time) {
         Enabler.perms.groupAdd("world", "Default", "serversigns.use.*");
         Enabler.perms.groupAdd("world", "Default", "kitmaster.kit.*");
+        NCEChat.broadcastMessage("&bHappyHour Has Been Enabled! You can use ALL the kits for " + time / 20 + " seconds!");
         this._plugin.getServer().getScheduler().scheduleSyncDelayedTask(
                 this._plugin, new Runnable() {
                     @Override
