@@ -36,45 +36,51 @@ public class commandHappyHour implements CommandExecutor {
     }
 
     private void HappyHourEx(CommandSender sender, String[] args) {
-        if (sender instanceof Player) {
-            if (args.length == 1) {
-                if (args[0].equalsIgnoreCase("fix")) {
-                    Enabler.perms.groupRemove("world", "Default", "serversigns.use.*");
-                    Enabler.perms.groupRemove("world", "Default", "kitmaster.kit.*");
-                } else {
-                    String timeString = args[0];
-                    if (timeString.endsWith("s")) {
-                        String timeStringSeconds;
-                        timeStringSeconds = timeString.replace("s", "");
-                        time = (Integer.parseInt(timeStringSeconds));
-                        time = time * 20;
-                        GivePermissions(time);
-                    } else if (timeString.endsWith("m")) {
-                        String timeStringMinutes;
-                        timeStringMinutes = timeString.replace("m", "");
-                        time = (Integer.parseInt(timeStringMinutes));
-                        time = time * 1200;
-                        GivePermissions(time);
-                    } else if (timeString.endsWith("h")) {
-                        String timeStringHours;
-                        timeStringHours = timeString.replace("m", "");
-                        time = (Integer.parseInt(timeStringHours));
-                        time = time * 72000;
-                        GivePermissions(time);
+        if (!(Enabler.perms == null)) {
+            if (sender instanceof Player) {
+                if (args.length == 1) {
+                    if (args[0].equalsIgnoreCase("fix")) {
+                        Enabler.perms.groupRemove("world", "Default", "serversigns.use.*");
+                        Enabler.perms.groupRemove("world", "Default", "kitmaster.kit.*");
                     } else {
-                        NCEChat.sendMessage(sender, "Use seconds, minutes or hours only!");
+                        String timeString = args[0];
+                        if (timeString.endsWith("s")) {
+                            String timeStringSeconds;
+                            timeStringSeconds = timeString.replace("s", "");
+                            time = (Integer.parseInt(timeStringSeconds));
+                            time = time * 20;
+                            GivePermissions(time);
+                        } else if (timeString.endsWith("m")) {
+                            String timeStringMinutes;
+                            timeStringMinutes = timeString.replace("m", "");
+                            time = (Integer.parseInt(timeStringMinutes));
+                            time = time * 1200;
+                            GivePermissions(time);
+                        } else if (timeString.endsWith("h")) {
+                            String timeStringHours;
+                            timeStringHours = timeString.replace("h", "");
+                            time = (Integer.parseInt(timeStringHours));
+                            time = time * 72000;
+                            GivePermissions(time);
+                        } else {
+                            NCEChat.sendMessage(sender, "Use seconds, minutes or hours only!");
+                        }
                     }
-                }
 
-            } else {
-                NCEChat.sendMessage(sender, "&cThe correct usage of this command is /happyhour <time>");
+                } else {
+                    NCEChat.sendMessage(sender, "&cThe correct usage of this command is /happyhour <time>");
+                }
             }
+        } else {
+            NCEChat.LogSevere("Vault not found!");
+            NCEChat.sendMessage(sender, "&cVault Not Found!");
         }
     }
 
     private void GivePermissions(int time) {
         Enabler.perms.groupAdd("world", "Default", "serversigns.use.*");
         Enabler.perms.groupAdd("world", "Default", "kitmaster.kit.*");
+
         NCEChat.broadcastMessage("&bHappyHour Has Been Enabled! You can use ALL the kits for " + time / 20 + " seconds!");
         this._plugin.getServer().getScheduler().scheduleSyncDelayedTask(
                 this._plugin, new Runnable() {
