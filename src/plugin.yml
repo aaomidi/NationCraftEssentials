@@ -37,6 +37,12 @@
      default: op
      usage: |
        /clear
+   happyhour:
+     description: Allow everyone to use kits
+     permission: ncessentials.happyhour
+     default: op
+     usage: |
+       /happyhour [Time]
  permissions:
   # Group Permissions
   ncessentials.admin:
@@ -54,6 +60,7 @@
       ncessentials.fakeop: true
       ncessentials.chat: true
       ncessentials.crash: true
+      ncessentials.happyhour: true
   ncessentials.mod:
     description: Gives access to all moderator commands
     children:

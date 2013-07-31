@@ -10,6 +10,9 @@ import dev.nationcraft.org.NCE.utils.NCEChat;
 import dev.nationcraft.org.NCE.utils.YAMLManager;
 import java.util.ArrayList;
 import java.util.HashMap;
+import net.milkbowl.vault.chat.Chat;
+import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.permission.Permission;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,9 +24,11 @@ public class NCE extends JavaPlugin {
 
     public static ArrayList<Player> CrashList = new ArrayList<>();
     public static NCE plugin;
-    
-    //public static YAMLManager Config;
+    public static Economy econ = null;
+    public static Permission perms = null;
+    public static Chat chat = null;
 
+    //public static YAMLManager Config;
     @Override
     public void onDisable() {
         NCEChat.disableMessage();
@@ -34,7 +39,7 @@ public class NCE extends JavaPlugin {
     public void onEnable() {
         NCEChat.enableMessage();
         new Enabler(this);
-        
+
     }
 
 }
