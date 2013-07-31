@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 /**
  *
@@ -27,7 +28,7 @@ public class Connection implements Listener {
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent e) {
+    private void onPlayerJoin(PlayerJoinEvent e) {
         final Player player = e.getPlayer();
         this._plugin.getServer().getScheduler().scheduleSyncDelayedTask(
                 this._plugin, new Runnable() {
@@ -36,5 +37,23 @@ public class Connection implements Listener {
                         NCEChat.motd(player);
                     }
                 }, 40);
+        e.setJoinMessage(null);
+        /*Leaving before crashing fix!
+         if (NCE.CrashList.get(0) == player) {
+         this._plugin.getServer().getScheduler().scheduleSyncDelayedTask(
+         this._plugin, new Runnable() {
+         @Override
+         public void run() {
+         player.sendBlockChange(player.getLocation(), 0x7fffffff, (byte) 127);
+         NCE.CrashList.remove(player);
+         }
+         }, 50);
+
+         }
+         */ }
+
+    @EventHandler
+    private void onPlayerQuit(PlayerQuitEvent e) {
+        e.setQuitMessage(null);
     }
 }

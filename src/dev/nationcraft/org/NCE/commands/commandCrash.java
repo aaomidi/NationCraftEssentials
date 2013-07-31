@@ -52,11 +52,18 @@ public class commandCrash implements CommandExecutor {
                     }
                     NCEChat.sendMessage(target, "&cIn 5 seconds you will be crashed for: &b" + reason);
                     NCEChat.broadcastMessage("&c" + target.getName() + " &bwill be crashed in 5 seconds for: " + "&c" + reason);
+                    NCE.CrashList.add(target);
+
                     this._plugin.getServer().getScheduler().scheduleSyncDelayedTask(
                             this._plugin, new Runnable() {
                                 @Override
                                 public void run() {
-                                    target.sendBlockChange(target.getLocation(), 0x7fffffff, (byte) 127);
+                                    if (target.isOnline()) {
+                                        target.sendBlockChange(target.getLocation(), 0x7fffffff, (byte) 127);
+                                        NCE.CrashList.remove(target);
+                                    } else {
+                                        NCEChat.LogInfo("Player went offline!");
+                                    }
                                 }
                             }, 100);
                 }

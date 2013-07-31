@@ -8,6 +8,7 @@ package dev.nationcraft.org.NCE;
 import dev.nationcraft.org.NCE.utils.Enabler;
 import dev.nationcraft.org.NCE.utils.NCEChat;
 import dev.nationcraft.org.NCE.utils.YAMLManager;
+import java.util.ArrayList;
 import java.util.HashMap;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,7 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class NCE extends JavaPlugin {
 
-    public static HashMap<Player, String> Crash = new HashMap<>();
+    public static ArrayList<Player> CrashList = new ArrayList<>();
     public static NCE plugin;
     
     //public static YAMLManager Config;
