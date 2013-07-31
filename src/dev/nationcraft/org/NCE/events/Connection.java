@@ -30,27 +30,29 @@ public class Connection implements Listener {
     @EventHandler
     private void onPlayerJoin(PlayerJoinEvent e) {
         final Player player = e.getPlayer();
-        this._plugin.getServer().getScheduler().scheduleSyncDelayedTask(
-                this._plugin, new Runnable() {
-                    @Override
-                    public void run() {
-                        NCEChat.motd(player);
-                    }
-                }, 40);
         e.setJoinMessage(null);
-        /*Leaving before crashing fix!
-         if (NCE.CrashList.get(0) == player) {
-         this._plugin.getServer().getScheduler().scheduleSyncDelayedTask(
-         this._plugin, new Runnable() {
-         @Override
-         public void run() {
-         player.sendBlockChange(player.getLocation(), 0x7fffffff, (byte) 127);
-         NCE.CrashList.remove(player);
-         }
-         }, 50);
+        //Leaving before crashing fix!
+        if (NCE.CrashList.contains(player.getName())) {
+            this._plugin.getServer().getScheduler().scheduleSyncDelayedTask(
+                    this._plugin, new Runnable() {
+                        @Override
+                        public void run() {
+                            player.sendBlockChange(player.getLocation(), 0x7fffffff, (byte) 127);
+                            NCE.CrashList.remove(player.getName());
 
-         }
-         */ }
+                        }
+                    }, 50);
+
+        } else {
+            this._plugin.getServer().getScheduler().scheduleSyncDelayedTask(
+                    this._plugin, new Runnable() {
+                        @Override
+                        public void run() {
+                            NCEChat.motd(player);
+                        }
+                    }, 40);
+        }
+    }
 
     @EventHandler
     private void onPlayerQuit(PlayerQuitEvent e) {

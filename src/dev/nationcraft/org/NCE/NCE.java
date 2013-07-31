@@ -22,7 +22,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class NCE extends JavaPlugin {
 
-    public static ArrayList<Player> CrashList = new ArrayList<>();
+    public static ArrayList<String> CrashList = new ArrayList<>();
     public static NCE plugin;
     public static Economy econ = null;
     public static Permission perms = null;
