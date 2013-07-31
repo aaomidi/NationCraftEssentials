@@ -38,11 +38,11 @@ public class commandHappyHour implements CommandExecutor {
     private void HappyHourEx(CommandSender sender, String[] args) {
         if (sender instanceof Player) {
             if (args.length == 1) {
-                if (args[1].equalsIgnoreCase("fix")) {
+                if (args[0].equalsIgnoreCase("fix")) {
                     Enabler.perms.groupRemove("world", "Default", "serversigns.use.*");
                     Enabler.perms.groupRemove("world", "Default", "kitmaster.kit.*");
                 } else {
-                    String timeString = args[1];
+                    String timeString = args[0];
                     if (timeString.endsWith("s")) {
                         String timeStringSeconds;
                         timeStringSeconds = timeString.replace("s", "");
