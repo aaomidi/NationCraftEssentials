@@ -104,6 +104,7 @@ public class commandHappyHour implements CommandExecutor {
                         _plugin.getServer().dispatchCommand(_plugin.getServer().getConsoleSender(), "mangdelp default serversigns.use.*");
                         _plugin.getServer().dispatchCommand(_plugin.getServer().getConsoleSender(), "mangdelp default kitmaster.kit.*");
                         _plugin.getServer().dispatchCommand(_plugin.getServer().getConsoleSender(), "mansave");
+
                     }
                 }, time);
     }

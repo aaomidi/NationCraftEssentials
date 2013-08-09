@@ -1,1 +1,6 @@
 Custom-Join-Message: true
+MySQL:
+  Host: null:null
+  Database: null
+  Username: null
+  Password: null

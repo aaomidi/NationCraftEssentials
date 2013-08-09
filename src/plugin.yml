@@ -43,6 +43,12 @@
      default: op
      usage: |
        /happyhour [Time]
+   ticket:
+     description: Tickets.
+     permission: ncessentials.ticket
+     default: true
+     usage: |
+       /ticket [Support]
  permissions:
   # Group Permissions
   ncessentials.admin:
@@ -76,3 +82,4 @@
     description: Gives access to all user commands
     children:
       ncessentials.opme: true
+      ncessentials.ticket: true

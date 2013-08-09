@@ -6,17 +6,19 @@
 package dev.nationcraft.org.NCE.utils;
 
 import dev.nationcraft.org.NCE.NCE;
+import static dev.nationcraft.org.NCE.NCE.plugin;
 import dev.nationcraft.org.NCE.commands.commandClear;
 import dev.nationcraft.org.NCE.commands.commandCrash;
 import dev.nationcraft.org.NCE.commands.commandFakeOp;
 import dev.nationcraft.org.NCE.commands.commandHappyHour;
 import dev.nationcraft.org.NCE.commands.commandOpme;
+import dev.nationcraft.org.NCE.commands.commandTicket;
 import dev.nationcraft.org.NCE.commands.commandWarn;
 import dev.nationcraft.org.NCE.events.Chat;
-import dev.nationcraft.org.NCE.events.Connection;
+import dev.nationcraft.org.NCE.events.LeaveJoin;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
-import org.bukkit.command.CommandExecutor;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 /**
@@ -29,6 +31,8 @@ public class Enabler {
     public static Economy econ = null;
     public static Permission perms = null;
     public static Chat chat = null;
+    public static String servername = Bukkit.getServerName();
+    public MySQL con = null;
 
     public Enabler(NCE plugin) {
         _plugin = plugin;
@@ -37,8 +41,9 @@ public class Enabler {
         registerListeners();
         registerUtils();
         setupEconomy();
-        setupChat();
+        //setupChat();
         setupPermissions();
+        setupSQL();
 
     }
 
@@ -54,8 +59,9 @@ public class Enabler {
     }
 
     private void registerListeners() {
-        new Connection(_plugin);
+        new LeaveJoin(_plugin);
         new Chat(_plugin);
+
     }
 
     private void registerCommands() {
@@ -66,9 +72,11 @@ public class Enabler {
         _plugin.getCommand("fakeop").setExecutor(new commandFakeOp(_plugin));
         _plugin.getCommand("clear").setExecutor(new commandClear(_plugin));
         _plugin.getCommand("happyhour").setExecutor(new commandHappyHour(_plugin));
+        _plugin.getCommand("ticket").setExecutor(new commandTicket(_plugin));
     }
 
     private void registerUtils() {
+
         new NCEChat(_plugin);
 
     }
@@ -95,5 +103,22 @@ public class Enabler {
         RegisteredServiceProvider<Permission> rsp = _plugin.getServer().getServicesManager().getRegistration(Permission.class);
         perms = rsp.getProvider();
         return perms != null;
+    }
+
+    private void setupSQL() {
+        String host = _plugin.getConfig().getString("MySQL.Host");
+        //String port = _plugin.getConfig().getString("MySQL.port");
+        String db = _plugin.getConfig().getString("MySQL.Database");
+        String username = _plugin.getConfig().getString("MySQL.Username");
+        String password = _plugin.getConfig().getString("MySQL.Password");
+        con = new MySQL(_plugin);
+        if (con.connect(host, db, username, password) == false) {
+            _plugin.getServer().getPluginManager().disablePlugin(_plugin);
+            NCEChat.LogSevere("Plugin HAS been disabled due to no MySQL connection!");
+            return;
+
+        } else {
+            //be happy
+        }
     }
 }

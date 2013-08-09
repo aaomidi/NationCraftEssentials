@@ -6,23 +6,27 @@
 package dev.nationcraft.org.NCE.events;
 
 import dev.nationcraft.org.NCE.NCE;
+import dev.nationcraft.org.NCE.utils.MySQL;
 import dev.nationcraft.org.NCE.utils.NCEChat;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
 
 /**
  *
  * @author aa_om_000
  */
-public class Connection implements Listener {
+public class LeaveJoin implements Listener {
 
     private NCE _plugin;
 
-    public Connection(NCE plugin) {
+    public LeaveJoin(NCE plugin) {
         _plugin = plugin;
         _plugin.getServer().getPluginManager().registerEvents(this, _plugin);
     }
@@ -49,13 +53,30 @@ public class Connection implements Listener {
                         @Override
                         public void run() {
                             NCEChat.motd(player);
+
                         }
                     }, 40);
+        }
+        if (player.hasPermission("ncessentials.mod")) {
+            MySQL.sendTicketsAdmin(player.getName(), 0);
         }
     }
 
     @EventHandler
     private void onPlayerQuit(PlayerQuitEvent e) {
         e.setQuitMessage(null);
+    }
+
+    public void healthbars() {
+        ScoreboardManager manager = _plugin.getServer().getScoreboardManager();
+        Scoreboard board = manager.getNewScoreboard();
+        Objective objective = board.registerNewObjective("showhealth", "health");
+        objective.setDisplaySlot(DisplaySlot.BELOW_NAME);
+        objective.setDisplayName("/ 20");
+
+        for (Player online : _plugin.getServer().getOnlinePlayers()) {
+            online.setScoreboard(board);
+            online.setHealth(online.getHealth()); //Update their health
+        }
     }
 }
