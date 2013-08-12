@@ -49,6 +49,18 @@
      default: true
      usage: |
        /ticket [Support]
+   ping:
+     description: Ping.
+     permission: ncessentials.ping
+     default: true
+     usage: |
+       /ping [Player]
+   8ball:
+     description: 8Ball.
+     permission: ncessentials.8ball
+     default: op
+     usage: |
+       /8ball [Question]
  permissions:
   # Group Permissions
   ncessentials.admin:
@@ -78,8 +90,11 @@
       ncessentials.links: true
       ncessentials.caps: true
       ncessentials.chat: true
+      ncessentials.ping.others: true
+      ncessentials.8ball: true
   ncessentials.user:
     description: Gives access to all user commands
     children:
       ncessentials.opme: true
       ncessentials.ticket: true
+      ncessentials.ping: true

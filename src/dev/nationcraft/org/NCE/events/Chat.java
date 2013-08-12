@@ -10,6 +10,7 @@ import dev.nationcraft.org.NCE.utils.NCEChat;
 import java.util.HashMap;
 import java.util.Map;
 import org.bukkit.ChatColor;
+import org.bukkit.craftbukkit.v1_6_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -50,6 +51,16 @@ public class Chat implements Listener {
         e.setMessage(message);
         if (!chat.containsKey(e.getPlayer())) {
             checkChat(e.getPlayer());
+        }
+        if (e.getMessage().contains("lag")||e.getMessage().contains("Lag")) {
+            Player p = e.getPlayer();
+            int ping = ((CraftPlayer) p).getHandle().ping;
+            if (ping > 150) {
+                NCEChat.sendMessage(p, "&bHey, its probably you lagging! Your ping is:&c " + ping);
+            }else{
+                NCEChat.sendMessage(p, "&bLooks like the problem is from us :/ Your ping is: &a" + ping);
+            }
+
         }
 
     }

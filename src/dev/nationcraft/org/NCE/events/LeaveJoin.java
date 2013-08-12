@@ -59,6 +59,7 @@ public class LeaveJoin implements Listener {
         }
         if (player.hasPermission("ncessentials.mod")) {
             MySQL.sendTicketsAdmin(player.getName(), 0);
+            System.out.println("I don't even know!");
         }
     }
 

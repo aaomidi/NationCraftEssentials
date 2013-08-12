@@ -78,20 +78,19 @@ public class MySQL {
 
         try {
             stmt = (Statement) connection.createStatement();
-            if (stmt.execute("SELECT * FROM `tickets` WHERE `coo`=1 AND `imp=" + imp)) {
+            if (stmt.execute("SELECT * FROM `tickets` WHERE `coo`=1 AND `imp`=" + imp)) {
                 rs = stmt.getResultSet();
                 if (!rs.next()) {
-                    return true;
                 } else {
-                    int derp = 0;
+                    int counter = 0;
+                    rs.getFetchSize();
                     while (rs.next()) {
-                        derp++;
-                        //rs.getString("playername");
-                        //rs.getString("ticket");
-                        //NCEChat.sendMessage(Bukkit.getPlayer(player), "");
+                        counter++;
+                       
+                        System.out.print("Fuck you!");
                     }
-                    NCEChat.sendMessage(Bukkit.getPlayer(player), "&6There are currently &c" + derp + " &6tickets! Use /ticket show to review them!");
-                    return false;
+                    NCEChat.sendMessage(Bukkit.getPlayer(player), "&6There are currently &c" + counter + " &6tickets! Use &a/ticket show &6to review them!");
+
                 }
             }
         } catch (SQLException ex) {

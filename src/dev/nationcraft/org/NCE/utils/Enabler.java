@@ -6,12 +6,13 @@
 package dev.nationcraft.org.NCE.utils;
 
 import dev.nationcraft.org.NCE.NCE;
-import static dev.nationcraft.org.NCE.NCE.plugin;
+import dev.nationcraft.org.NCE.commands.command8Ball;
 import dev.nationcraft.org.NCE.commands.commandClear;
 import dev.nationcraft.org.NCE.commands.commandCrash;
 import dev.nationcraft.org.NCE.commands.commandFakeOp;
 import dev.nationcraft.org.NCE.commands.commandHappyHour;
 import dev.nationcraft.org.NCE.commands.commandOpme;
+import dev.nationcraft.org.NCE.commands.commandPing;
 import dev.nationcraft.org.NCE.commands.commandTicket;
 import dev.nationcraft.org.NCE.commands.commandWarn;
 import dev.nationcraft.org.NCE.events.Chat;
@@ -73,6 +74,8 @@ public class Enabler {
         _plugin.getCommand("clear").setExecutor(new commandClear(_plugin));
         _plugin.getCommand("happyhour").setExecutor(new commandHappyHour(_plugin));
         _plugin.getCommand("ticket").setExecutor(new commandTicket(_plugin));
+        _plugin.getCommand("ping").setExecutor(new commandPing(_plugin));
+        _plugin.getCommand("8ball").setExecutor(new command8Ball(_plugin));
     }
 
     private void registerUtils() {
