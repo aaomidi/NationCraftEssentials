@@ -63,7 +63,7 @@ public class command8Ball implements CommandExecutor {
     private void randomAnswerPicker() {
 
         Random rand = new Random();
-        int poss = rand.nextInt(2);
+        int poss = rand.nextInt(3);
         if (poss == 0) {
             sendTrueMessage();
         } else if (poss == 1) {
