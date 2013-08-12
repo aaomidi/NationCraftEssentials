@@ -46,8 +46,8 @@ public class command8Ball implements CommandExecutor {
                     ballstring += args[i] + " ";
                 }
 
-                NCEChat.broadcastMessage(p.getName() + " &3Asked: " + ballstring);
-                NCEChat.broadcastMessage("&bNationCraft &ashakes the magical 8ball...");
+                NCEChat.broadcastMessage(p.getName() + " &3Asked: &6" + ballstring);
+                NCEChat.broadcastMessage("&b&lNationCraft &r&ashakes the magical 8ball...");
                 this._plugin.getServer().getScheduler().scheduleSyncDelayedTask(
                         this._plugin, new Runnable() {
                             @Override
@@ -64,15 +64,13 @@ public class command8Ball implements CommandExecutor {
 
         Random rand = new Random();
         int poss = rand.nextInt(2);
-        switch (poss) {
-            case 0:
-                sendTrueMessage();
-            case 1:
-                sendNutMessage();
-            case 2:
-                sendFalseMessage();
+        if (poss == 0) {
+            sendTrueMessage();
+        } else if (poss == 1) {
+            sendNutMessage();
+        } else if (poss == 2) {
+            sendFalseMessage();
         }
-
     }
 
     private void sendTrueMessage() {
