@@ -87,7 +87,6 @@ public class MySQL {
                     while (rs.next()) {
                         counter++;
                        
-                        System.out.print("Fuck you!");
                     }
                     NCEChat.sendMessage(Bukkit.getPlayer(player), "&6There are currently &c" + counter + " &6tickets! Use &a/ticket show &6to review them!");
 

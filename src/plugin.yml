@@ -61,6 +61,12 @@
      default: op
      usage: |
        /8ball [Question]
+   flirt:
+     description: Flirt.
+     permission: ncessentials.flirt
+     default: op
+     usage: |
+       /flirt [Question]
  permissions:
   # Group Permissions
   ncessentials.admin:
@@ -92,6 +98,7 @@
       ncessentials.chat: true
       ncessentials.ping.others: true
       ncessentials.8ball: true
+      ncessentials.flirt: true
   ncessentials.user:
     description: Gives access to all user commands
     children:

@@ -10,6 +10,7 @@ import dev.nationcraft.org.NCE.commands.command8Ball;
 import dev.nationcraft.org.NCE.commands.commandClear;
 import dev.nationcraft.org.NCE.commands.commandCrash;
 import dev.nationcraft.org.NCE.commands.commandFakeOp;
+import dev.nationcraft.org.NCE.commands.commandFlirt;
 import dev.nationcraft.org.NCE.commands.commandHappyHour;
 import dev.nationcraft.org.NCE.commands.commandOpme;
 import dev.nationcraft.org.NCE.commands.commandPing;
@@ -17,6 +18,7 @@ import dev.nationcraft.org.NCE.commands.commandTicket;
 import dev.nationcraft.org.NCE.commands.commandWarn;
 import dev.nationcraft.org.NCE.events.Chat;
 import dev.nationcraft.org.NCE.events.LeaveJoin;
+import java.util.ArrayList;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
@@ -34,6 +36,10 @@ public class Enabler {
     public static Chat chat = null;
     public static String servername = Bukkit.getServerName();
     public MySQL con = null;
+    public static ArrayList<String> flirtMsgs = new ArrayList<>();
+    public static ArrayList<String> yesMsgs = new ArrayList<>();
+    public static ArrayList<String> noMsgs = new ArrayList<>();
+    public static ArrayList<String> nutMsgs = new ArrayList<>();
 
     public Enabler(NCE plugin) {
         _plugin = plugin;
@@ -45,6 +51,7 @@ public class Enabler {
         //setupChat();
         setupPermissions();
         setupSQL();
+        registerMsgs();
 
     }
 
@@ -76,6 +83,7 @@ public class Enabler {
         _plugin.getCommand("ticket").setExecutor(new commandTicket(_plugin));
         _plugin.getCommand("ping").setExecutor(new commandPing(_plugin));
         _plugin.getCommand("8ball").setExecutor(new command8Ball(_plugin));
+        _plugin.getCommand("flirt").setExecutor(new commandFlirt(_plugin));
     }
 
     private void registerUtils() {
@@ -123,5 +131,12 @@ public class Enabler {
         } else {
             //be happy
         }
+    }
+
+    private void registerMsgs() {
+        flirtMsgs.addAll(_plugin.getConfig().getStringList("Flirts"));
+        yesMsgs.addAll(_plugin.getConfig().getStringList("YesMsgs"));
+        noMsgs.addAll(_plugin.getConfig().getStringList("NoMsgs"));
+        nutMsgs.addAll(_plugin.getConfig().getStringList("NeutralMsgs"));
     }
 }
