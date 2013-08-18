@@ -6,6 +6,7 @@
 package dev.nationcraft.org.NCE.events;
 
 import dev.nationcraft.org.NCE.NCE;
+import dev.nationcraft.org.NCE.runnables.TPS;
 import dev.nationcraft.org.NCE.utils.NCEChat;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,17 +53,20 @@ public class Chat implements Listener {
         if (!chat.containsKey(e.getPlayer())) {
             checkChat(e.getPlayer());
         }
-        if (e.getMessage().contains("lag")||e.getMessage().contains("Lag")) {
+        if (e.getMessage().contains("lag") || e.getMessage().contains("Lag")) {
+            double tps = (TPS.tps + 1);
             Player p = e.getPlayer();
             int ping = ((CraftPlayer) p).getHandle().ping;
-            if (ping > 150) {
-                NCEChat.sendMessage(p, "&bHey, its probably you lagging! Your ping is:&c " + ping);
-            }else{
-                NCEChat.sendMessage(p, "&bLooks like the problem is from us :/ Your ping is: &a" + ping);
+            if (tps < 18) {
+                NCEChat.sendMessage(p, "&bLooks like the problem is from us :/ Your ping is: &a" + ping + " &bAnd our server tps is: &4" + tps);
+            } else {
+                if (ping >= 150) {
+                    NCEChat.sendMessage(p, "&bHey, its probably you lagging! Your ping is:&c " + ping);
+                } else {
+                    NCEChat.sendMessage(p, "&bNeither the server nor are you lagging. The problem might be in your computer.");
+                }
             }
-
         }
-
     }
 
     private void checkChat(final Player p) {

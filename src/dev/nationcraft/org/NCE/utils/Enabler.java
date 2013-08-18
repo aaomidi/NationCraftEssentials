@@ -5,6 +5,7 @@
  */
 package dev.nationcraft.org.NCE.utils;
 
+import dev.nationcraft.org.NCE.runnables.Sessions;
 import dev.nationcraft.org.NCE.NCE;
 import dev.nationcraft.org.NCE.commands.command8Ball;
 import dev.nationcraft.org.NCE.commands.commandClear;
@@ -18,11 +19,14 @@ import dev.nationcraft.org.NCE.commands.commandTicket;
 import dev.nationcraft.org.NCE.commands.commandWarn;
 import dev.nationcraft.org.NCE.events.Chat;
 import dev.nationcraft.org.NCE.events.LeaveJoin;
+import dev.nationcraft.org.NCE.runnables.TPS;
 import java.util.ArrayList;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.scheduler.BukkitTask;
+import dev.nationcraft.org.NCE.utils.Enabler;
 
 /**
  *
@@ -52,6 +56,7 @@ public class Enabler {
         setupPermissions();
         setupSQL();
         registerMsgs();
+        setupRunnables();
 
     }
 
@@ -138,5 +143,10 @@ public class Enabler {
         yesMsgs.addAll(_plugin.getConfig().getStringList("YesMsgs"));
         noMsgs.addAll(_plugin.getConfig().getStringList("NoMsgs"));
         nutMsgs.addAll(_plugin.getConfig().getStringList("NeutralMsgs"));
+    }
+
+    private void setupRunnables() {
+        BukkitTask sessionChecker = new Sessions(_plugin).runTaskTimerAsynchronously(_plugin, 100, 6000);
+        BukkitTask tpsChecker = new TPS(_plugin).runTaskTimerAsynchronously(_plugin, 20, 1);
     }
 }

@@ -82,23 +82,24 @@ public class command8Ball implements CommandExecutor {
 
     private void sendTrueMessage() {
         Random rand = new Random();
-        int size = msgs.size();
+        int size = Enabler.yesMsgs.size();
         int got = rand.nextInt(size);
-        NCEChat.broadcastPluginMessage(Enabler.yesMsgs.get(got));
+        NCEChat.broadcastMessage("&2"+Enabler.yesMsgs.get(got));
     }
 
     private void sendNutMessage() {
         Random rand = new Random();
-        int size = msgs.size();
+        int size = Enabler.nutMsgs.size();
         int got = rand.nextInt(size);
-        NCEChat.broadcastPluginMessage(Enabler.nutMsgs.get(got));
+        NCEChat.broadcastMessage("&7"+Enabler.nutMsgs.get(got));
+        
     }
 
     private void sendFalseMessage() {
         Random rand = new Random();
-        int size = msgs.size();
+        int size = Enabler.noMsgs.size();
         int got = rand.nextInt(size);
-        NCEChat.broadcastPluginMessage(Enabler.noMsgs.get(got));
+        NCEChat.broadcastMessage("&c"+Enabler.noMsgs.get(got));
     }
 
 }

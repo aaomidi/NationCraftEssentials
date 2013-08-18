@@ -27,6 +27,7 @@ public class NCE extends JavaPlugin {
     public static Economy econ = null;
     public static Permission perms = null;
     public static Chat chat = null;
+    public static boolean status=true;
 
     //public static YAMLManager Config;
     @Override
