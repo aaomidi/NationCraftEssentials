@@ -35,6 +35,7 @@ public class Chat implements Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent e) {
         String message = e.getMessage();
+        Player p = e.getPlayer();
         //Anti Spam
         if (chat.containsKey(e.getPlayer())) {
             if (!e.getPlayer().hasPermission("ncessentials.chat")) {
@@ -55,7 +56,7 @@ public class Chat implements Listener {
         }
         if (e.getMessage().contains("lag") || e.getMessage().contains("Lag")) {
             double tps = (TPS.tps + 1);
-            Player p = e.getPlayer();
+
             int ping = ((CraftPlayer) p).getHandle().ping;
             if (tps < 18) {
                 NCEChat.sendMessage(p, "&bLooks like the problem is from us :/ Your ping is: &a" + ping + " &bAnd our server tps is: &4" + tps);
@@ -65,6 +66,40 @@ public class Chat implements Listener {
                 } else {
                     NCEChat.sendMessage(p, "&bNeither the server nor are you lagging. The problem might be in your computer.");
                 }
+            }
+        }
+        //emoticons
+        if (e.getMessage().contains("<3")) {
+
+            e.setMessage(e.getMessage().replace("<3", ChatColor.DARK_RED + "❤" + ChatColor.WHITE));
+
+        }
+        if (p.hasPermission("ncessentials.emote")) {
+            if (e.getMessage().contains("(peace)")) {
+
+                e.setMessage(e.getMessage().replace("(peace)", ChatColor.GREEN + "✌" + ChatColor.WHITE));
+
+            }
+            if (e.getMessage().contains("(guy)")) {
+                e.setMessage(e.getMessage().replace("(guy)", ChatColor.AQUA + "웃" + ChatColor.WHITE));
+            }
+            if (e.getMessage().contains("(girl)")) {
+                e.setMessage(e.getMessage().replace("(girl)", ChatColor.LIGHT_PURPLE + "유" + ChatColor.WHITE));
+            }
+            if (e.getMessage().contains("(star)")) {
+                e.setMessage(e.getMessage().replace("(star)", ChatColor.GOLD + "✯" + ChatColor.WHITE));
+            }
+            if (e.getMessage().contains("(flower)")) {
+                e.setMessage(e.getMessage().replace("(flower)", ChatColor.LIGHT_PURPLE + "✽" + ChatColor.WHITE));
+            }
+            if (e.getMessage().contains("(sun)")) {
+                e.setMessage(e.getMessage().replace("(sun)", ChatColor.YELLOW + "❋" + ChatColor.WHITE));
+            }
+            if (e.getMessage().contains("^")) {
+                e.setMessage(e.getMessage().replace("^", ChatColor.YELLOW + "☂" + ChatColor.WHITE));
+            }
+            if (e.getMessage().contains("(yin)")) {
+                e.setMessage(e.getMessage().replace("(yin)", ChatColor.DARK_GREEN + "☯" + ChatColor.WHITE));
             }
         }
     }

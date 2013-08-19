@@ -105,3 +105,8 @@
       ncessentials.opme: true
       ncessentials.ticket: true
       ncessentials.ping: true
+  ncessentials.donor:
+    description: Gives access to all donor commands
+    children:
+      ncessentials.emote: true
+        
