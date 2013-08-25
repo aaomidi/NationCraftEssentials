@@ -8,6 +8,8 @@ package dev.nationcraft.org.NCE.events;
 import dev.nationcraft.org.NCE.NCE;
 import dev.nationcraft.org.NCE.utils.MySQL;
 import dev.nationcraft.org.NCE.utils.NCEChat;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -60,10 +62,16 @@ public class LeaveJoin implements Listener {
         if (player.hasPermission("ncessentials.mod")) {
             MySQL.sendTicketsAdmin(player.getName(), 0);
         }
+        //Teleport to Spawn
+        if (Bukkit.getServerName().equalsIgnoreCase("NationCraft Main")) {
+            Location spawn = Bukkit.getWorld("world").getSpawnLocation();
+            e.getPlayer().teleport(spawn);
+        }
     }
 
     @EventHandler
-    private void onPlayerQuit(PlayerQuitEvent e) {
+    private void onPlayerQuit(PlayerQuitEvent e
+            ) {
         e.setQuitMessage(null);
     }
 

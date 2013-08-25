@@ -35,6 +35,7 @@ public class Chat implements Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent e) {
         String message = e.getMessage();
+        char[] messagea = e.getMessage().toCharArray();
         Player p = e.getPlayer();
         //Anti Spam
         if (chat.containsKey(e.getPlayer())) {
@@ -43,13 +44,34 @@ public class Chat implements Listener {
                 e.setCancelled(true);
             }
         }
-        //Anti Caps
+        //Anti Caps (SMART)
         if (!e.getPlayer().hasPermission("ncessentials.caps")) {
-            message = e.getMessage();
-            String first = message.substring(0, 1);
-            String msg = message.substring(1, message.length());
-            message = first.toUpperCase() + msg.toLowerCase();
+            double upper = 0.0D;
+            double lower = 0.0D;
+            char character;
+            for (int index = 0; index < message.length(); index++) {
+                character = message.charAt(index);
+                if (Character.isLetter(character)) {
+                    if (Character.isUpperCase(character)) {
+                        upper += 1.0D;
+
+                    } else {
+                        lower += 1.0D;
+
+                    }
+                }
+            }
+            double percent = upper / (upper + lower) * 100.0D;
+            if (percent > 60.0D) {
+                String first = message.substring(0, 1);
+                String msg = message.substring(1, message.length());
+                message = first.toUpperCase() + msg.toLowerCase();
+
+            } else {
+            }
         }
+
+        //Lag listener
         e.setMessage(message);
         if (!chat.containsKey(e.getPlayer())) {
             checkChat(e.getPlayer());

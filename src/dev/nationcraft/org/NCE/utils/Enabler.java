@@ -19,6 +19,7 @@ import dev.nationcraft.org.NCE.commands.commandTicket;
 import dev.nationcraft.org.NCE.commands.commandWarn;
 import dev.nationcraft.org.NCE.events.Chat;
 import dev.nationcraft.org.NCE.events.LeaveJoin;
+import dev.nationcraft.org.NCE.events.Movement;
 import dev.nationcraft.org.NCE.runnables.TPS;
 import java.util.ArrayList;
 import net.milkbowl.vault.economy.Economy;
@@ -74,7 +75,7 @@ public class Enabler {
     private void registerListeners() {
         new LeaveJoin(_plugin);
         new Chat(_plugin);
-
+        new Movement(_plugin);
     }
 
     private void registerCommands() {
