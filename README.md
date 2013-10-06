@@ -1,4 +1,4 @@
 NationCraftEssentials
 =====================
 
-Essentials for my server
+Essentials for NationCraft Servers Network
